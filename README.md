@@ -16,7 +16,7 @@
   - [🔭Acknowledgments ](#acknowledgments-)
   - [📝 License ](#-license-)
 
-# 🎯 School Liberary <a name="about-project"></a>
+# 🎯Blog App <a name="about-project"></a>
 
 This project featues basic functionality on how to decode a morse-coded message
 
