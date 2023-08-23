@@ -10,8 +10,6 @@ class Post < ApplicationRecord
 
   after_create :increment_author_posts_counter
 
-
-
   def increment_author_posts_counter
     puts 'Callback invoked!'
     author.increment!(:posts_counter)
