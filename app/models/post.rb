@@ -11,10 +11,14 @@ class Post < ApplicationRecord
   after_create :increment_author_posts_counter
 
 
-  # private
+  
 
   def increment_author_posts_counter
     puts 'Callback invoked!'
     author.increment!(:posts_counter)
+  end
+
+    def recent_comments(limit = 5)
+    comments.order(created_at: :desc).limit(limit)
   end
 end
