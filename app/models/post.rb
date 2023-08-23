@@ -8,4 +8,13 @@ class Post < ApplicationRecord
   attribute :comments_counter, :integer, default: 0
   attribute :likes_counter, :integer, default: 0
 
+  after_create :increment_author_posts_counter
+
+
+  # private
+
+  def increment_author_posts_counter
+    puts 'Callback invoked!'
+    author.increment!(:posts_counter)
+  end
 end
