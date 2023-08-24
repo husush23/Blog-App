@@ -21,7 +21,6 @@ class Post < ApplicationRecord
   private
 
   def increment_author_posts_counter
-    puts 'Callback invoked!'
     author.increment!(:posts_counter)
   end
 end
