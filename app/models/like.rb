@@ -2,7 +2,7 @@ class Like < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: :author_id
   belongs_to :post
 
-  after_create :increment_post_likes_counter
+  after_save :increment_post_likes_counter
 
   private
 

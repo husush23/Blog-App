@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
 
   attribute :text, :text
 
-  after_create :increment_post_comments_counter
+  after_save :increment_post_comments_counter
 
   private
 
