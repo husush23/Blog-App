@@ -3,7 +3,6 @@
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [🎯 Decode a Morse Code Message](#-decode-a-morse-code-message)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -36,6 +35,11 @@ This project featues basic functionality on how to decode a morse-coded message
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
+
+### Future features
+
+- Sing up functionality
+- Sign out functionality
 
 To get a local copy up and running follow these simple example steps.
 
