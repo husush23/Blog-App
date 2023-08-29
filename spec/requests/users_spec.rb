@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   describe 'Loading' do
     it 'eager loads the app without errors' do
       expect { Rails.application.eager_load! }.not_to raise_error
@@ -34,5 +34,4 @@ RSpec.describe "Users", type: :request do
       expect(response).to render_template(:index)
     end
   end
-
 end
