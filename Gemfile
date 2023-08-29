@@ -28,7 +28,6 @@ gem 'turbo-rails'
 
 gem 'rails-controller-testing'
 
-
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
