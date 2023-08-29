@@ -27,12 +27,11 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Book Store <a name="about-project"></a>
+# 📖 Blog app <a name="about-project"></a>
 
 **Blog app** is project built with Rails and it's basically simple blog website, it ahs some features, such add article and so.
 
