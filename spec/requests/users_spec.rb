@@ -23,6 +23,7 @@ RSpec.describe 'Users', type: :request do
     it 'navigates to the users index successfully' do
       get users_path
       expect(response).to have_http_status(:success)
+      expect(response).to render_template('index')
     end
 
     it 'displays correct placeholder' do
@@ -36,10 +37,11 @@ RSpec.describe 'Users', type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it 'renders the correct template' do
+    it 'renders the correct template and displays correct placehoder' do
       user = User.create(name: 'user1', photo: 'photo1', bio: 'bios1', posts_counter: 0)
       get "/users/#{user[:id]}"
       expect(response).to render_template('show')
+      expect(response.body).to include('User Show here')
     end
   end
 end
