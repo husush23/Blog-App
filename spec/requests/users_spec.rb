@@ -41,7 +41,5 @@ RSpec.describe 'Users', type: :request do
       get "/users/#{user[:id]}"
       expect(response).to render_template('show')
     end
-    
-        
   end
 end
