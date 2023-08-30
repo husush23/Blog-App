@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.includes(comments: :author)
   end
 
   def show
-    @post = Post.find(params[:id]) # Find the post by the post ID
-    @user = @post.author            # Fetch the user who authored the post
+    @post = Post.find(params[:id]) 
+    @user = @post.author   
   end
 end

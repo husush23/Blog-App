@@ -1,7 +1,27 @@
 <h1>Posts list page here</h1>
 
-<ul>
-    <% @posts.each do |p|%>
-        <li> <%= p.title %> </li>
-    <% end %>
-</ul>
+<div class="user">
+    <div class="photo"> <%= @user.photo %> </div>
+    <div class="detail">
+        <h1>  <%=  @user.name %></h1>
+        <small>Number of posts: <%= @user.posts_counter%>  </small>
+    </div>
+</div>
+<br>
+
+<% @posts.each_with_index do |post, index|%>
+    <div class="posts">
+        <small>Post  <%= index+1 %> </small>
+            <p> <%= post.title %> </p>
+            <div class ="reactions"> 
+                <span>Comments: <%= post.comments_counter%> </span>
+                <span>Likes: <%= post.likes_counter%> </span>
+            </div>
+    </div>
+
+    <div class="comments">
+        <% post.comments.each_with_index do |comment, index|%>
+            <p>Comment <%=index+1%>: <%= comment.author.name%>,  <%= comment.text%> </p>
+        <% end %>
+    </div>
+<% end %>
