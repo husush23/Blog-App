@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <h3><b>React capstone project</b></h3>
+  <h3><b>Blog App </b></h3>
 
 </div>
 
