@@ -1,1 +1,41 @@
-<h1>User Show here</h1>
+<div class="container">
+  <h1 class="mt-5">Users details page</h1>
+  <div class="row">
+      <div class="col-md-12 mb-4">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="photo">
+              <% if @user.photo.present? %>
+                <img src="<%= @user.photo %>" alt="<%= @user.name %>" class="img-fluid">
+              <% else %>
+                <img src="https://picsum.photos/150" alt="Placeholder Image" class="img-fluid">
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="detail">
+              <h5><strong><%= @user.name %></strong></h5>
+              <p class="post-counter">Number of posts: <%= @user.posts_counter %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row bio">
+  <div></div>
+    <p> orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum </p>
+  </div>
+</div>
+
+<div class="posts">
+    <% @posts.each_with_index do |post, index|%>
+    <small>Post  <%= index+1 %> </small>
+        <p> <%= post.title %> </p>
+        <div class ="reactions"> 
+            <span>Comments: <%= post.comments_counter%> </span>
+            <span>Likes: <%= post.likes_counter%> </span>
+        </div>
+    <% end %>
+</div>
+
+<button>See all posts </button>

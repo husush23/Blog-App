@@ -1,1 +1,27 @@
-<h1>Users page here</h1>
+<div class="container">
+  <h1 class="mt-5">Users list page</h1>
+
+  <div class="row">
+    <% @users.each do |u| %>
+      <div class="col-md-12 mb-4">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="photo">
+              <% if u.photo.present? %>
+                <img src="<%= u.photo %>" alt="<%= u.name %>" class="img-fluid">
+              <% else %>
+                <img src="https://picsum.photos/150" alt="Placeholder Image" class="img-fluid">
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="detail">
+              <h5><strong><%= u.name %></strong></h5>
+              <p class="post-counter">Number of posts: <%= u.posts_counter %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
