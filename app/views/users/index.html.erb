@@ -1,8 +1,13 @@
 <h1>Users list  page </h1>
 
-<ul>
-    <% @users.each do |u| %>
-        <li> <span> <%= u.id %>. </span> <%=  u.name %></li>
-        <small>Number of posts: <%= u.posts_counter%>  </small>
-    <% end %>
-</ul>
+<div class="user">
+
+        <% @users.each do |u| %>
+            <div class="photo"> <%= u.photo %> </div>
+            <div class="detail">
+                <h1>  <%=  u.name %></h1>
+                <small>Number of posts: <%= u.posts_counter%>  </small>
+            </div>
+        <% end %>
+
+</div>
