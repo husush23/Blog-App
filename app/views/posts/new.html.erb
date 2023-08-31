@@ -1,6 +1,8 @@
 <h1>Create a New Post</h1>
 
-<%= form_with(model: @post, local: true) do |form| %>
+
+<%= form_with(model: [@user, @post], local: true) do |form| %>
+
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -27,3 +29,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+
