@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_user_and_post, only: [:create]
-  
+
   def new
     @user = current_user
     @post = Post.find(params[:post_id])

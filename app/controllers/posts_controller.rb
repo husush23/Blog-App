@@ -12,16 +12,16 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-  
+
     if @post.save
       redirect_to user_post_path(@user, @post), notice: 'Post successfully created'
     else
       redirect_to new_user_post_path(@user), alert: 'Failed to create post'
     end
   end
-  
+
   def liked_by?(user)
-    self.likes.where(author: user).exists?
+    likes.where(author: user).exists?
   end
 
   private
