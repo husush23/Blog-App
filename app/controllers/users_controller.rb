@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new 
+    @user = User.new
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
