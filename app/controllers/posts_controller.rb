@@ -1,8 +1,16 @@
 class PostsController < ApplicationController
   helper_method :current_user
 
+
+def index
+  @user = User.find(params[:user_id]) 
+  @posts = @user.posts.includes(comments: :author)
+end
+
   def show
     @post = Post.includes(comments: :author).find(params[:id])
+    @user = current_user
+    @new_like = Like.new
   end
 
   def new
@@ -20,9 +28,18 @@ class PostsController < ApplicationController
     end
   end
 
-  def liked_by?(user)
-    likes.where(author: user).exists?
+  def create_like
+    @post = Post.find(params[:id])
+    @new_like = @post.likes.build(author: current_user)
+  
+    if @new_like.save
+      redirect_to request.referrer, notice: 'Post liked'
+    else
+      redirect_to request.referrer, alert: 'Failed to like post'
+    end
   end
+  
+  
 
   private
 
