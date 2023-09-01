@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    @user = User.find(params[:user_id]) 
 
     if @post.save
       redirect_to user_post_path(@user, @post), notice: 'Post successfully created'
@@ -27,16 +28,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def create_like
-    @post = Post.find(params[:id])
-    @new_like = @post.likes.build(author: current_user)
+  # def create_like
+  #   @post = Post.find(params[:id])
+  #   @new_like = @post.likes.build(author: current_user)
 
-    if @new_like.save
-      redirect_to request.referrer, notice: 'Post liked'
-    else
-      redirect_to request.referrer, alert: 'Failed to like post'
-    end
-  end
+  #   if @new_like.save
+  #     redirect_to request.referrer, notice: 'Post liked'
+  #   else
+  #     redirect_to request.referrer, alert: 'Failed to like post'
+  #   end
+  # end
 
   private
 
