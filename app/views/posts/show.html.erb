@@ -17,4 +17,7 @@
     </div>
     </div>
 </div>
-
+<br>
+<%= form_with(model: @new_like, url: user_post_likes_path(@user, @post)) do |form| %>
+  <%= form.submit "Like" %>
+<% end %>

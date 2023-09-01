@@ -1,0 +1,11 @@
+
+<h2>New Comment</h2>
+
+<%= form_with(model: [@user, @post, @comment], url: user_post_comments_path(@user, @post), local: true) do |form| %>
+  <%= form.label :text %>
+  <%= form.text_area :text %>
+
+  <%= form.submit 'Add Comment' %>
+<% end %>
+
+<%= link_to 'Back to Post', user_post_path(@user, @post) %>
