@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   helper_method :current_user
 
-
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(comments: :author)
@@ -38,7 +37,6 @@ class PostsController < ApplicationController
       redirect_to request.referrer, alert: 'Failed to like post'
     end
   end
-
 
   private
 
