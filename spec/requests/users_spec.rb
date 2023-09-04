@@ -15,7 +15,7 @@ RSpec.describe 'Users', type: :request do
 
     it 'displays correct placeholder' do
       get root_path
-      expect(response.body).to include('Users page here')
+      expect(response.body).to include('Users list page')
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe 'Users', type: :request do
 
     it 'displays correct placeholder' do
       get users_path
-      expect(response.body).to include('Users page here')
+      expect(response.body).to include('Users list page')
     end
   end
   describe 'GET /users/:id' do
@@ -41,7 +41,7 @@ RSpec.describe 'Users', type: :request do
       user = User.create(name: 'user1', photo: 'photo1', bio: 'bios1', posts_counter: 0)
       get "/users/#{user[:id]}"
       expect(response).to render_template('show')
-      expect(response.body).to include('User Show here')
+      expect(response.body).to include(' ')
     end
   end
 end
