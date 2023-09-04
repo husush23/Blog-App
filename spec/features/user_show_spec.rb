@@ -43,5 +43,11 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_content(post.text)
         end
       end
+
+      it 'displays user posts' do
+        expect(page).to have_content('Post 1')
+        expect(page).to have_content('Post 2')
+      end
   end
+
 end
