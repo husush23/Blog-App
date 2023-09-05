@@ -30,24 +30,23 @@ RSpec.describe 'Users', type: :system do
       expect(page).to have_selector("img[src='#{user1.photo}']")
     end
     it 'should have a see all posts button' do
-        expect(page).to have_link('See all posts')
-      end
-      it 'should redirect to the user posts page when the see all posts button is clicked' do
-        click_link('See all posts')
-        expect(page).to have_current_path(user_posts_path(user1))
-      end
+      expect(page).to have_link('See all posts')
+    end
+    it 'should redirect to the user posts page when the see all posts button is clicked' do
+      click_link('See all posts')
+      expect(page).to have_current_path(user_posts_path(user1))
+    end
 
-      it 'displays user\'s first 3 posts' do
-        posts.take(3).each do |post|
-          expect(page).to have_content(post.title)
-          expect(page).to have_content(post.text)
-        end
+    it 'displays user\'s first 3 posts' do
+      posts.take(3).each do |post|
+        expect(page).to have_content(post.title)
+        expect(page).to have_content(post.text)
       end
+    end
 
-      it 'displays user posts' do
-        expect(page).to have_content('Post 1')
-        expect(page).to have_content('Post 2')
-      end
+    it 'displays user posts' do
+      expect(page).to have_content('Post 1')
+      expect(page).to have_content('Post 2')
+    end
   end
-
 end

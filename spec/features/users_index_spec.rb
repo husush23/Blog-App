@@ -8,7 +8,7 @@ RSpec.describe 'Users Index Page', type: :feature do
 
   describe 'User contents' do
     before(:example) { visit users_path }
-    
+
     it 'displays a list of users' do
       expect(page).to have_content('Users list page')
       expect(page).to have_content('User 1')

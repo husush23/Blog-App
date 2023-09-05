@@ -71,6 +71,6 @@ Capybara.javascript_driver = :selenium_chrome_headless # Use Chrome for JavaScri
 
 RSpec.configure do |config|
   # ...
-  
+
   config.include Capybara::DSL, type: :system
 end
