@@ -68,9 +68,6 @@ RSpec.describe 'Post Index View Page', type: :system do
       expect(page).to have_content(comment1.text)
       expect(page).to have_content(comment2.text)
     end
-    it 'it has like button' do
-
-    end
   end
   describe 'Like button' do
     before(:example) do
