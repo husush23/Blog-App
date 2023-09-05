@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'post index view page', type: :system do
+RSpec.describe 'Post Index View Page', type: :system do
   let!(:user1) do
     User.create(
-      name: 'test user1',
+      name: 'Test User 1',
       photo: 'https://images.example.com/i/086/5621234.jpg',
-      bio: 'test_bio1',
+      bio: 'Test Bio 1',
       posts_counter: 1
     )
   end
@@ -15,22 +15,26 @@ RSpec.describe 'post index view page', type: :system do
   end
 
   let!(:comment1) do
-    Comment.create(post: post1, author: user1, text: 'nice!')
-  end
-  let!(:comment2) do
-    Comment.create(post: post1, author: user1, text: 'nice!')
-  end
-  let!(:comment2) do
-    Comment.create(post: post1, author: user1, text: 'nice!')
-  end
-  let!(:comment2) do
-    Comment.create(post: post1, author: user1, text: 'nice!')
-  end
-  let!(:comment2) do
-    Comment.create(post: post1, author: user1, text: 'nice!')
+    Comment.create(post: post1, author: user1, text: 'Nice comment 1!')
   end
 
-  describe 'show correct post for user1' do
+  let!(:comment2) do
+    Comment.create(post: post1, author: user1, text: 'Nice comment 2!')
+  end
+
+  let!(:comment3) do
+    Comment.create(post: post1, author: user1, text: 'Nice comment 3!')
+  end
+
+  let!(:comment4) do
+    Comment.create(post: post1, author: user1, text: 'Nice comment 4!')
+  end
+
+  let!(:comment5) do
+    Comment.create(post: post1, author: user1, text: 'Nice comment 5!')
+  end
+
+  describe 'Show correct post for user1' do
     before(:example) do
       visit user_post_path(user1, post1)
     end
