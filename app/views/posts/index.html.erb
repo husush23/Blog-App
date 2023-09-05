@@ -1,53 +1,51 @@
-
 <div class="container">
-  <h1 class="mt-5"> </h1>
+  <h1 class="mt-5"></h1>
   <div class="row">
-      <div class="col-md-12 mb-4">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="photo">
-              <% if @user.photo.present? %>
-                <img src="<%= @user.photo %>" alt="<%= @user.name %>" class="img-fluid">
-              <% else %>
-                <img src="https://picsum.photos/150" alt="Placeholder Image" class="img-fluid">
-              <% end %>
-            </div>
+    <div class="col-md-12 mb-4">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="photo">
+            <% if @user.photo.present? %>
+              <img src="<%= @user.photo %>" alt="<%= @user.name %>" class="img-fluid">
+            <% else %>
+              <img src="https://picsum.photos/150" alt="Placeholder Image" class="img-fluid">
+            <% end %>
           </div>
-          <div class="col-md-9">
-            <div class="detail">
-              <h5><strong><%= @user.name %></strong></h5>
-              <p class="post-counter">Number of posts: <%= @user.posts_counter %></p>
-            </div>
+        </div>
+        <div class="col-md-9">
+          <div class="detail">
+            <h5><strong><%= @user.name %></strong></h5>
+            <p class="post-counter">Number of posts: <%= @user.posts_counter %></p>
           </div>
-          <div class="col-md-9 ms-5 bio">
-            <div class="detail ">
+        </div>
+        <div class="col-md-9 ms-5 bio">
+          <div class="detail">
             <h3>Bio</h3>
-             <p> <%= @user.bio%> </p>
-            </div>
+            <p><%= @user.bio %></p>
           </div>
         </div>
       </div>
+    </div>
   </div>
 
- <% @posts.each_with_index do |post, index|%>
-  <div class="card mt-2">
-    <div class="card-body">
-      <h5 class="card-title"> <%= post.title %> </h5>
-      <p class="card-text"> <%= post.text %> </p>
-         <div class ="reactions"> 
-            <span>Comments: <%= post.comments_counter%> </span>
-            <span>Likes: <%= post.likes_counter%> </span>
+  <% @posts.each_with_index do |post, index| %>
+    <div class="card mt-2">
+      <div class="card-body">
+        <%= link_to post.title, user_post_path(@user, post) %>
+        <p class="card-text"><%= post.text %></p>
+        <div class="reactions">
+          <span>Comments: <%= post.comments_counter %></span>
+          <span>Likes: <%= post.likes_counter %></span>
         </div>
-    </div>
-  </div>
-    <div class="card mt-1 p-2 text-light bg-secondary">
-      <div class="comments">
-        <% post.comments.each_with_index do |comment, index|%>
-            <p>Comment <%=index+1%>: <%= comment.author.name%>,  <%= comment.text%> </p>
+
+        <% if post.comments.any? %>
+          <div class="first-comment">
+            <%= "First Comment: #{post.comments.first.author.name}, #{post.comments.first.text}" %>
+          </div>
         <% end %>
-    </div>
+      </div>
     </div>
   <% end %>
-      <%= link_to "back to profile", user_path(@user), class:"btn btn-primary see"%>
-</div>
 
+  <%= will_paginate @posts %>
+</div>
