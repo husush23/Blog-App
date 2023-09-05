@@ -16,7 +16,7 @@
           </div>
           <div class="col-md-9">
             <div class="detail">
-              <h5><strong><%= u.name %></strong></h5>
+              <h5><strong><%= link_to u.name, user_path(u) %></strong></h5>
               <p class="post-counter">Number of posts: <%= u.posts_counter %></p>
             </div>
           </div>

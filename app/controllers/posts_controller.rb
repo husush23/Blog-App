@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(comments: :author)
+    @posts = @user.posts.includes(comments: :author).paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -27,17 +27,6 @@ class PostsController < ApplicationController
       redirect_to new_user_post_path(@user), alert: 'Failed to create post'
     end
   end
-
-  # def create_like
-  #   @post = Post.find(params[:id])
-  #   @new_like = @post.likes.build(author: current_user)
-
-  #   if @new_like.save
-  #     redirect_to request.referrer, notice: 'Post liked'
-  #   else
-  #     redirect_to request.referrer, alert: 'Failed to like post'
-  #   end
-  # end
 
   private
 
