@@ -69,4 +69,19 @@ RSpec.describe 'Post Index View Page', type: :system do
       expect(page).to have_content(comment2.text)
     end
   end
+
+  describe 'Like button' do
+    before(:example) do
+      visit user_post_path(user1, post1)
+    end
+
+    it 'displays the like button' do
+      expect(page).to have_button('Like')
+    end
+
+    it 'allows the user to like the post' do
+      click_button 'Like'
+      expect(page).to have_content('Likes: 1')
+    end
+  end
 end
