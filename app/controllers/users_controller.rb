@@ -22,7 +22,6 @@ class UsersController < ApplicationController
     @posts = @user.recent_posts
   end
 
-
   # def user_params
   #   params.require(:user).permit(:name, :photo, :bio)
   # end
