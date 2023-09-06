@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to @user, notic: 'User was successfully created'
+      redirect_to @user, notice: 'User was successfully created'
+
     else
       render :new
     end
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(name:, photo:, bio:)
+    params.require(:user).permit(:name, :photo, :bio) 
   end
+  
 end
