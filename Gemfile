@@ -9,6 +9,7 @@ gem 'rails', '~> 7.0.7'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 gem 'will_paginate'
+gem 'devise', '~> 4.9', '>= 4.9.2'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 # group :development, :test do
