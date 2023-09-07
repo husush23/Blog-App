@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_user_and_post, only: [:create, :destroy]
+  before_action :find_user_and_post, only: %i[create destroy]
 
   def new
     @user = current_user
@@ -20,21 +20,21 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     authorize! :destroy, @comment
-    
+
     if @comment.author == current_user
       if @comment.destroy
-        flash[:success] = "Comment deleted successfully."
+        flash[:success] = 'Comment deleted successfully.'
       else
-        flash[:error] = "Failed to delete the comment."
+        flash[:error] = 'Failed to delete the comment.'
       end
     else
       flash[:error] = "You don't have permission to delete this comment."
     end
-  
+
     redirect_to user_post_path(params[:user_id], params[:post_id])
   end
-  
-  
+
+
   private
 
   def find_user_and_post

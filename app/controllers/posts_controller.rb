@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @post = current_user.posts.new(post_params)
-  
+
     if @post.save
       redirect_to user_post_path(@user, @post), notice: 'Post successfully created'
     else
@@ -33,16 +33,16 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     authorize! :destroy, @post
-      
-      if @post.destroy
-      flash[:success] = "Post deleted successfully."
+
+    if @post.destroy
+      flash[:success] = 'Post deleted successfully.'
     else
       flash[:error] = "You don't have permission to delete this post."
     end
-    
-    redirect_to root_path 
+
+    redirect_to root_path
   end
-  
+
   private
 
   def post_params
