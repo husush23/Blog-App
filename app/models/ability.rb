@@ -1,20 +1,19 @@
-# frozen_string_literal: true
+# app/models/ability.rb
 
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    return unless user.present?
-    
-    # Define the ability to delete a post if it is the user's post or if the user is an admin.
-    can :delete, Post, author_id: user.id
-    can :delete, Post if user.admin?
+    user ||= User.new # Guest user (not logged in)
 
-    # Define the ability to delete a comment if it is the user's comment or if the user is an admin.
-    can :delete, Comment, author_id: user.id
-    can :delete, Comment if user.admin?
-    
-    # Allow all users to read resources (posts, comments, etc.).
-    can :read, :all
+    # Define abilities for different user roles
+    if user.admin?
+      can :manage, :all # Admins can manage all resources
+    else
+      can :read, Post # Regular users can read posts
+      can :create, Post if user.persisted? # Logged-in users can create posts
+      can :update, Post, user_id: user.id # Users can update their own posts
+      can :destroy, Post, user_id: user.id # Users can delete their own posts
+    end
   end
 end

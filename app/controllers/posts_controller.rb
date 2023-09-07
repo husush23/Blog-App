@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -28,7 +29,6 @@ class PostsController < ApplicationController
       render :new
     end
   end
-  
 
   def destroy
     @post = Post.find(params[:id])
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "You don't have permission to delete this post."
     end
-    redirect_to root_path # or wherever you want to redirect after deletion
+    redirect_to root_path 
   end
 
   private
