@@ -189,3 +189,5 @@ I would like to express my heartfelt appreciation to Microverse for helping doin
 This project is [MIT](./MIT.md) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+suppose you have a small rails project with only user, post, comment, and like models, The project already uses a devise gem for authentication, so now you want to authorization using cancancan gem, and you want to give the following ability to every user, 1. A user can delete a post if it is theirs or if they have an admin role (column role has value "admin"). 2. A user can delete a comment if it is theirs or if they have an admin role (column role has value "admin").

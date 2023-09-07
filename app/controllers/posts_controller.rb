@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
-  helper_method :current_user
 
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts.includes(comments: :author).paginate(page: params[:page], per_page: 10)
+    @can_delete_posts = can?(:delete, Post)
   end
 
   def show
@@ -18,14 +18,27 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
     @user = User.find(params[:user_id])
-
+    @post = current_user.posts.new(post_params)
+  
     if @post.save
       redirect_to user_post_path(@user, @post), notice: 'Post successfully created'
     else
-      redirect_to new_user_post_path(@user), alert: 'Failed to create post'
+      flash.now[:alert] = 'Failed to create post'
+      render :new
     end
+  end
+  
+
+  def destroy
+    @post = Post.find(params[:id])
+    if current_user == @post.user
+      @post.destroy
+      flash[:success] = "Post deleted successfully."
+    else
+      flash[:error] = "You don't have permission to delete this post."
+    end
+    redirect_to root_path # or wherever you want to redirect after deletion
   end
 
   private
