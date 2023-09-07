@@ -182,8 +182,6 @@ If you encounter any issues or have questions about the project, feel free to re
 
 I would like to express my heartfelt appreciation to Microverse for helping doing such projects, it's building our mindS and I am thankfully appreciating their efforts for heliping doing these tasks.
 
-<!-- LICENSE -->
-
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./MIT.md) licensed.
