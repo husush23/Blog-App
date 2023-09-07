@@ -1,11 +1,22 @@
 class LikesController < ApplicationController
   def create
-    like = Post.find(params[:post_id]).likes.new(author: current_user)
-    if like.save
-      flash[:success] = 'Post liked'
+    @post = Post.find(params[:post_id])
+    
+    # Check if the user has already liked the post
+    existing_like = Like.find_by(post: @post, author: current_user)
+    
+    if existing_like
+      flash[:alert] = 'You have already liked this post.'
     else
-      flash.now[:error] = 'Error: Failed to like post'
+      like = @post.likes.new(author: current_user)
+      
+      if like.save
+        flash[:success] = 'Post liked successfully.'
+      else
+        flash[:error] = 'Error: Failed to like post.'
+      end
     end
-    redirect_back(fallback_location: users_path)
+    
+    redirect_to user_post_path(@post.author, @post)
   end
 end

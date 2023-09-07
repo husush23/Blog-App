@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[index show]
 
   def index
     @user = User.find(params[:user_id])
@@ -30,17 +30,31 @@ class PostsController < ApplicationController
     end
   end
 
+  # def destroy
+  #   @user = current_user
+  #   @post = @user.posts.find_by(id: params[:id])
+
+  #   puts @post.inspect
+  #   if @post.destroy
+  #     redirect_to user_posts_path(@user), notice: 'Post deleted successfully!'
+  #   else
+  #     redirect_to user_posts_path(@user), alert: 'Failed to delete the post.'
+  #   end
+  # end
+
   def destroy
     @post = Post.find(params[:id])
-    if current_user == @post.user
+    
+    if current_user == @post.author
       @post.destroy
       flash[:success] = "Post deleted successfully."
     else
       flash[:error] = "You don't have permission to delete this post."
     end
-    redirect_to root_path 
+    
+    redirect_to root_path # or wherever you want to redirect after deletion
   end
-
+  
   private
 
   def post_params

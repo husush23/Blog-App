@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_user_and_post, only: [:create]
+  before_action :find_user_and_post, only: [:create, :destroy]
 
   def new
     @user = current_user
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       render :new
     end
   end
-
+  
   private
 
   def find_user_and_post

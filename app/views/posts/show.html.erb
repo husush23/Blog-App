@@ -13,8 +13,13 @@
 <% end %>
     <%= link_to "Comment", new_user_post_comment_path(@user, @post), class: "btn btn-primary mt-2" %>
     <% if current_user == @post.author %>
-      <%= link_to "Delete Post", user_post_path(@user, @post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "btn btn-danger mt-2" %>
+      
     <% end %>
+      <%= link_to "Delete", user_post_path(@user, @post), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }, class: "btn btn-danger mt-2" %>
+    
   </div>
 </div>
 
