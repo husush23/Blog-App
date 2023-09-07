@@ -1,3 +1,4 @@
+# Abilities
 class Ability
   include CanCan::Ability
 
