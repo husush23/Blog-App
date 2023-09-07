@@ -31,7 +31,7 @@
   <% @posts.each_with_index do |post, index| %>
     <div class="card mt-2">
       <div class="card-body">
-        <%= link_to post.title, user_post_path(post) %>
+        <%= link_to post.title, user_post_path(@user, post) %>
         <p class="card-text"><%= post.text %></p>
         <div class="reactions">
           <span>Comments: <%= post.comments_counter %></span>

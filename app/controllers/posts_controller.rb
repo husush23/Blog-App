@@ -8,8 +8,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(comments: :author).find(params[:id])
-    @user = current_user
+    @user = User.find(params[:user_id])
+    @post = @user.posts.includes(comments: :author).find(params[:id])
     @new_like = Like.new
   end
 
@@ -30,29 +30,17 @@ class PostsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @user = current_user
-  #   @post = @user.posts.find_by(id: params[:id])
-
-  #   puts @post.inspect
-  #   if @post.destroy
-  #     redirect_to user_posts_path(@user), notice: 'Post deleted successfully!'
-  #   else
-  #     redirect_to user_posts_path(@user), alert: 'Failed to delete the post.'
-  #   end
-  # end
-
   def destroy
     @post = Post.find(params[:id])
-    
-    if current_user == @post.author
-      @post.destroy
+    authorize! :destroy, @post
+      
+      if @post.destroy
       flash[:success] = "Post deleted successfully."
     else
       flash[:error] = "You don't have permission to delete this post."
     end
     
-    redirect_to root_path # or wherever you want to redirect after deletion
+    redirect_to root_path 
   end
   
   private

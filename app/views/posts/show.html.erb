@@ -12,14 +12,12 @@
   <%= form.submit "Like", class: "btn btn-primary" %>
 <% end %>
     <%= link_to "Comment", new_user_post_comment_path(@user, @post), class: "btn btn-primary mt-2" %>
-    <% if current_user == @post.author %>
-      
-    <% end %>
-      <%= link_to "Delete", user_post_path(@user, @post), data: {
+       <% if can? :destroy, @post %> 
+      <%= link_to "Delete", user_post_path(current_user, @post), method: :delete, data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   }, class: "btn btn-danger mt-2" %>
-    
+     <% end %> 
   </div>
 </div>
 
@@ -27,9 +25,16 @@
   <div class="comments">
     <% @post.comments.each_with_index do |comment, index| %>
       <p><%= index + 1 %>. <strong><%= comment.author.name %></strong>: <%= comment.text %></p>
+      <% if can? :destroy, comment %> 
+        <%= link_to "Delete", user_post_comment_path(comment.author, @post, comment), method: :delete, data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        }, class: "btn btn-danger mt-2" %>
+      <% end %>
     <% end %>
   </div>
 </div>
 </div>
-<br>
+
+
 

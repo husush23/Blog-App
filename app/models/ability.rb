@@ -12,8 +12,8 @@ class Ability
     else
       can :read, Post # Regular users can read posts
       can :create, Post if user.persisted? # Logged-in users can create posts
-      can :update, Post, user_id: user.id # Users can update their own posts
-      can :destroy, Post, user_id: user.id # Users can delete their own posts
+      can :update, Post, author_id: user.id # Users can update their own posts
+      can :destroy, Post, author_id: user.id # Users can delete their own posts
     end
   end
 end
