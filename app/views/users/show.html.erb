@@ -15,7 +15,7 @@
         <div class="col-md-9">
           <div class="detail">
             <h5><strong><%= @user.name %></strong></h5>
-            <p class="post-counter">Number of posts: <%= @user.posts_counter %></p>
+            <p class="post-counter">Number of posts: <%= @user.posts.length %></p>
           </div>
         </div>
         <div class="col-md-9 ms-5 bio">
@@ -34,7 +34,7 @@
         <%= link_to post.title, user_post_path(@user, post) %>
         <p class="card-text"><%= post.text %></p>
         <div class="reactions">
-          <span>Comments: <%= post.comments_counter %></span>
+          <span>Comments: <%= post.comments.length %></span>
           <span>Likes: <%= post.likes_counter %></span>
         </div>
       </div>
