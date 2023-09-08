@@ -12,6 +12,17 @@ class Api::V1::CommentsController < ApplicationController
       render json: @comment
     end
 
+    def create
+        @comment = @post.comments.build(comment_params)
+        @comment.author = current_user
+    
+        if @comment.save
+          render json: @comment, status: :created
+        else
+          render json: @comment.errors, status: :unprocessable_entity
+        end
+    end
+
   
     private
   
